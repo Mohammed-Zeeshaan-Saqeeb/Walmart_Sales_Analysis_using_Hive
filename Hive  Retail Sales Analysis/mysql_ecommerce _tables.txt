@@ -1,0 +1,97 @@
+mysql ecommerce tables;
+
+create table q1
+(
+customer_id varchar(100),
+total_spending int,
+customer_category varchar(100)
+);
+
+create  table q2
+(
+year int,
+month int,
+total_sales float
+);
+
+create table q3(
+hour int,
+total_orders_sales float
+);
+
+create  table q41(
+category varchar(100),
+total_orders_sales float
+);
+
+create table q42(
+product_category varchar(100),
+rating float
+);
+
+create table q43
+(
+product_id varchar(100),
+sales int
+);
+
+
+
+create table q44
+(
+product_id varchar(100),
+avg_ratings float,
+category varchar(100),
+rank int);
+
+create table q45
+(
+rating int,
+number_of_orders int
+);
+
+create table q51
+(
+payment_type varchar(100),
+number_of_orders int
+);
+
+
+
+create  table q52
+(
+payment_installments int,
+number_of_orders int
+);
+
+create  table q6
+(
+city varchar(100),
+number_of_customers int
+);
+
+create  table q71
+(
+seller_id varchar(100),
+products_sold int
+);
+
+create  table q72
+(
+seller_id varchar(100),
+avg_rating float
+);
+
+create table q81
+(
+city varchar(100),
+weight_category varchar(100),
+total_orders int
+);
+
+create  table q82(
+seller_state varchar(100),
+products_sold int
+);
+
+

@@ -1,0 +1,78 @@
+HIve queries
+
+--1st query
+use hive_project;
+select * from sales limit 100;
+
+--2. Get email survey opt-in values for all customers
+
+--3 Select customers for a given shipping ZIP Code
+select customername from sales where zipcode=20715;
+
+--4. Get customers and their first order only
+
+
+SELECT
+  s1.customername,
+  s1.orderid,
+  s1.orderdate,
+  s1.quantity,
+  s1.quote,
+  s1.discountpct,
+  s1.rate
+FROM
+  sales s1
+JOIN
+  (
+    SELECT
+      customername,
+      MIN(CAST(to_date(from_unixtime(unix_timestamp(orderdate, 'dd-MM-yyyy'))) AS date)) AS min_orderdate
+    FROM
+      sales
+    GROUP BY
+      customername
+  ) s2
+ON
+  s1.customername = s2.customername
+  AND to_date(from_unixtime(unix_timestamp(s1.orderdate, 'dd-MM-yyyy'))) = s2.min_orderdate;
+
+================5. Get customers and all of their Order IDs
+
+select customername,collect_list(orderid) from sales group by customername;
+
+====6. Get total of each order for these customers
+
+select customername,sum(salesAmount) from sales group by customerName;
+
+=== 7.
+  Monthly sales data
+
+
+
+
+    sum(s.saleamount) as TotalSales,
+
+
+    avg(s.saleamount) as AvgSales,
+
+
+    min(s.saleamount) as MinSales,
+
+
+    max(s.saleamount) as MaxSale
+
+
+select ordermonthyear,
+sum(saleamount) as totalsales,
+avg(saleamount) as avg_sales,max(saleamount) as maxsales,
+min(saleamount) as minsales from sales group by ordermonthyear;
+
+
+== 8.by category by month
+
+select productcategory,ordermonthyear,
+sum(saleamount) as totalsales,
+avg(saleamount) as avg_sales,max(saleamount) as maxsales,
+min(saleamount) as minsales from sales group by productcategory, ordermonthyear;
+
+

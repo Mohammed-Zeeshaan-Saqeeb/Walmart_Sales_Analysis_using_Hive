@@ -1,0 +1,7 @@
+sqoop import-all-tables \
+--connect jdbc:mysql://localhost:3306/sql_project \
+--username root \
+--password Zs123786students2 \
+--hive-import \
+--hive-database health_care_db \
+--warehouse-dir /user/cloudera/hive/warehouse
